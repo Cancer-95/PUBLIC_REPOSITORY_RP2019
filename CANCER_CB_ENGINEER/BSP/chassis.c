@@ -279,7 +279,7 @@ void chassis_forward_handler(void)//底盘向前跑
 //			}
 //			else if(millis() -climb_tube.landing_angle_delay_time > 600)//延时半秒钟稳住陀螺仪
 //			{
-				chassis.vx = 500;//加快一点防止张不开爪子
+				 chassis.vx = 500;//加快一点防止张不开爪子
 //			}
 		}
 		
