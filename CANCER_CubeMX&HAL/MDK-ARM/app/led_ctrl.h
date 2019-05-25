@@ -1,0 +1,26 @@
+#ifndef __LED_CTRL_H
+#define __LED_CTRL_H
+
+#include "bsp_sys.h"
+
+#define LED_BLUE_ON    	   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET)
+#define LED_BLUE_OFF  	   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET)
+#define LED_BLUE_TOGGLE    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13)
+
+#define LED_ORANGE_ON	     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_RESET)
+#define LED_ORANGE_OFF     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET)
+#define LED_ORANGE_TOGGLE  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14)
+
+#define LED_GREEN_ON	     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET)
+#define LED_GREEN_OFF      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET)
+#define LED_GREEN_TOGGLE   HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10)
+
+#define LED_RED_ON		     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET)
+#define LED_RED_OFF        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_SET)
+#define LED_RED_TOGGLE     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_11)
+
+#endif
+
+void led_task(void);
+
+
