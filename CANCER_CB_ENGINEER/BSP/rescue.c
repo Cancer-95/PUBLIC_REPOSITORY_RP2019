@@ -47,15 +47,17 @@ void rescue_ctrl(void)
 				if((millis() - rescue.hook_push_time < 1000) && 
 					 (trailer.ctrl_mode == TRAILER_PUSH))  //2000ms以内只收砸气缸下来
 				{
-					TRAILER_HOOK_RELEASE;                         //拖车钩子气缸弹下 释放伤员
+//					TRAILER_HOOK_RELEASE;                         //拖车钩子气缸弹下 释放伤员
+					ELECTROMAGNET_TURN_OFF;
+					
 					chassis.force_draft_out_enable = ENABLE;
 				}
 				else
 				{
 					trailer.ctrl_mode = TRAILER_PULL;                                //拖车收回		
           
-					TRAILER_HOOK_CAPTURE;                                               //钩子气缸回收					
-					TRAILER_HOOK_PULL;
+//					TRAILER_HOOK_CAPTURE;                                               //钩子气缸回收					
+//					TRAILER_HOOK_PULL;
 					chassis.force_draft_out_enable = DISABLE;
 					
 //					if((abs(trailer.total_angle - trailer.target_zero) < 100) || 
@@ -65,7 +67,8 @@ void rescue_ctrl(void)
 						GIM_SERVO_ZERO;
 						chassis.ass_mode_enable = DISABLE;                             //关闭车尾模式				
 //						TRAILER_HOOK_CAPTURE;                                            //钩子气缸回收
-						flag_trailer_hook = 0;                                         //让下一次钩子伸出来是它是收上去的
+//						flag_trailer_hook = 0;                                         //让下一次钩子伸出来是它是收上去的
+					  flag_electromagnet = 0;
 						rescue.flag_hook_confirm = 0;                                  //钩子确认置零
 						rescue.hook_push_time_record = 1;
 						rescue.rescue_enable = DISABLE;                                //让这个case只跑一次			
@@ -76,8 +79,8 @@ void rescue_ctrl(void)
 			case RELEASE_HOOK_MODE://释放钩子
 			{				
 			  trailer.ctrl_mode = TRAILER_PUSH;  //拖车推出			
-				TRAILER_HOOK_PUSH;
-				
+//				TRAILER_HOOK_PUSH;
+
 				chassis.ass_mode_enable = ENABLE;  //开启车尾模式
 				rescue.confirm_sight_record = ENABLE;
 				
@@ -110,8 +113,10 @@ void rescue_ctrl(void)
 				chassis.ass_mode_enable = DISABLE; //关闭车尾模式
 				rescue.hook_enable = DISABLE;      //钩子不可控
 				
-				TRAILER_HOOK_CAPTURE;                 //钩子气缸回收(钩住伤员)
-				TRAILER_HOOK_PULL;
+//				TRAILER_HOOK_CAPTURE;                 //钩子气缸回收(钩住伤员)
+//				TRAILER_HOOK_PULL;
+				ELECTROMAGNET_TURN_ON;
+				
 				trailer.ctrl_mode = TRAILER_RELAX; //拖车泻力
 					
         rescue.release_sight_record = ENABLE;				

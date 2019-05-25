@@ -162,8 +162,7 @@ void loop(void)
 			
 //			trailer_task();
 			bomb_claw_task();	
-		//		CAN2_send(0X200, 0, trailer.current, 0, bomb_claw.current[L]);      
-		//	  CAN2_send(0X1FF, bomb_claw.current[R], 0, bomb_claw.current[Y], 0);
+
 			CAN2_send(0X200, bomb_claw.current[L], bomb_claw.current[R], bomb_claw.current[Y], trailer.current);      
 			
 			

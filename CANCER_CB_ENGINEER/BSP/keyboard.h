@@ -78,6 +78,7 @@
 #define RESCUE_CTRL                     ((KEY_X_PRESSED ? 1 : 0) && KEY_CTRL_PRESSED)                      //CTRL+X 进入退出救援模式
 #define RESCUE_NO_TURN_AROUND_CTRL      ((KEY_X_PRESSED ? 1 : 0) && KEY_CTRL_PRESSED && KEY_SHIFT_PRESSED) //SHIFT+CTRL+X 进入退出救援模式(不掉头)
 #define RESCUE_SIGHT_CTRL               (MOUSE_L_PRESSED ? 1 : 0)                                          //鼠标左键 手动切换视角
+#define ELECTROMAGNET_CTRL              (MOUSE_R_PRESSED ? 1 : 0)                                          //鼠标右键 手动控制钩子
 #define TRAILER_HOOK_CTRL               (MOUSE_R_PRESSED ? 1 : 0)                                          //鼠标右键 手动控制钩子
 #define HOOK_CONFIRM_CTRL               ((KEY_F_PRESSED ? 1 : 0) && KEY_CTRL_PRESSED)                      //CTRL+F 确认钩住
 //      feed_bomb_ctrl
@@ -144,6 +145,7 @@ extern bool flag_bomb_claw_CCTV;
 
 extern bool get_bomb_clear_record;    //退出执行纠错程序
 
+extern bool flag_electromagnet;
 extern bool flag_trailer_hook;        //给relay.h中的宏准备  
 extern bool flag_rescue_sight;
 

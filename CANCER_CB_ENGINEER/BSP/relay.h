@@ -80,6 +80,21 @@
 	flag_trailer_hook = 0;            \
 }                                   \
 
+/*电磁铁通断*/
+#define ELECTROMAGNET_TURN_ON       \
+{                                   \
+  GPIO_SetBits(GPIOA,GPIO_Pin_6);   \
+	GPIO_SetBits(GPIOA,GPIO_Pin_7);   \
+	flag_electromagnet = 0;           \
+}                                   \
+
+#define ELECTROMAGNET_TURN_OFF      \
+{                                   \
+	GPIO_ResetBits(GPIOA,GPIO_Pin_6); \
+	GPIO_ResetBits(GPIOA,GPIO_Pin_7); \
+	flag_electromagnet = 1;           \
+}                                   \
+
 /*拖车钩子前后控制*/
 #define TRAILER_HOOK_PUSH           \
 {                                   \

@@ -897,6 +897,29 @@ void keyboard_get_bomb_handler(void)
 /*--------------------------------------救援键盘控制--------------------------------------------*/
 
 /*钩子手动键盘控制*/
+bool flag_electromagnet = 0;
+static void kb_electromagnet_ctrl(uint8_t electromagnet_ctrl)
+{	
+	static bool flag_toggle = 1;
+
+	if(rescue.hook_enable)
+	{
+		if(electromagnet_ctrl && flag_toggle)
+		{
+			flag_electromagnet = !flag_electromagnet;
+			flag_toggle = 0;
+		}
+		else if(!electromagnet_ctrl) flag_toggle = 1;	
+		
+		if(flag_electromagnet)//根据flag判断要做什么
+		{
+			ELECTROMAGNET_TURN_OFF;
+		}		
+		else ELECTROMAGNET_TURN_ON;	
+	}
+}
+
+/*钩子手动键盘控制*/
 bool flag_trailer_hook = 0;
 static void kb_trailer_hook_ctrl(uint8_t trailer_hook_ctrl)
 {	
@@ -1031,6 +1054,7 @@ void keyboard_rescue_handler(void)
 		{
 			if(rescue.rescue_enable == ENABLE)
 			{
+				kb_electromagnet_ctrl(ELECTROMAGNET_CTRL);
 				kb_trailer_hook_ctrl(TRAILER_HOOK_CTRL);
 				kb_rescue_sight_ctrl(RESCUE_SIGHT_CTRL);
 				kb_hook_confirm_ctrl(HOOK_CONFIRM_CTRL);		
